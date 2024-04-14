@@ -20,32 +20,4 @@ export const menuArray = [
     image: "../assets/item graphic.png",
     id: 2,
   },
-  {
-    name: "Beer",
-    ingredients: ["grain, hops, yeast, water"],
-    price: 12,
-    image: "../assets/item graphic.png",
-    id: 2,
-  },
-  {
-    name: "Beer",
-    ingredients: ["grain, hops, yeast, water"],
-    price: 12,
-    image: "../assets/item graphic.png",
-    id: 2,
-  },
-  {
-    name: "Beer",
-    ingredients: ["grain, hops, yeast, water"],
-    price: 12,
-    image: "../assets/item graphic.png",
-    id: 2,
-  },
-  {
-    name: "Beer",
-    ingredients: ["grain, hops, yeast, water"],
-    price: 12,
-    image: "../assets/item graphic.png",
-    id: 2,
-  },
 ];

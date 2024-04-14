@@ -24,25 +24,25 @@
       <section class="p-10 pb-0" id="item-container">
         <!-- Rednering menu in main.js from data.js -->
       </section>
-      <section class="pr-10 pl-10 pb-10 flex flex-col section-two">
+      <section class="pr-10 pl-10 pb-10 flex flex-col section-two" id="section-two">
         <h2 class="mt-6 self-center mb-10 text-2xl">Your order</h2>
-        <div class="order-price text-xl">
-          <div class="order-item flex justify-between mb-2">
-            <p>pizza</p>
-            <p>$14</p>
-          </div>
-          <div class="order-item flex justify-between mb-2">
-            <p id="item">beer</p>
-            <p id="cost">$14</p>
-          </div>
-        </div>
+        <div class="order-price text-xl" id="your-order"> </div>
         <div class="ored-sum flex justify-between mt-2 text-xl">
           <p>Total price:</p>
-          <p>$14</p>
+          <p id="total">$14</p>
         </div>
-        <button class="bg-buttoncolor text-white font-bold font-sans p-3 mt-10">Complete order</button>
+        <button id="complete-button" class="bg-buttoncolor text-white font-bold font-sans p-3 mt-10">Complete order</button>
       </section>
     </main>
     <script src="../main.js" type="module"></script>
+    <div class="form font-sans">
+      <form class="flex flex-col gap-4 p-10 text-center" action="">
+        <h2 class="text-2xl font-bold mb-4 text-primary">Enter card details</h2>
+        <input type="text" name="name" id="name" placeholder="Enter your name" />
+        <input type="text" name="card-number" id="card-number" placeholder="Enter card number" />
+        <input type="text" name="card-cvv" id="card-cvv" placeholder="Enter CVV" />
+        <button id="Pay" class="bg-buttoncolor text-white font-bold font-sans p-3 mt-10">Pay</button>
+      </form>
+    </div>
   </body>
 </html>

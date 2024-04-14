@@ -61,4 +61,20 @@ img {
   background-color: rgb(254, 250, 245);
   overflow: visible;
   box-shadow: 0px 0px 24px 0px rgba(97, 97, 97, 1);
+  margin-top: 50px;
+}
+.form {
+  box-shadow: 0px 0px 24px 0px rgba(97, 97, 97, 1);
+  background-color: white;
+  width: 400px;
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+}
+.form input {
+  border: 2px solid #b2b2b2;
+  padding: 0.75em;
+  outline: 0;
 }
