@@ -21,6 +21,8 @@ img {
   height: 75dvh;
   box-shadow: 0px 0px 24px 0px rgba(97, 97, 97, 1);
   background-color: rgb(254, 250, 245);
+  overflow: scroll;
+  position: relative;
 }
 .header {
   background: url("assets/ferks-guare-KEZdWfYD-ow-unsplash\ 1.png") no-repeat;
@@ -40,7 +42,23 @@ img {
   align-self: center;
   color: #454545;
   font-size: 2.5em;
+  cursor: pointer;
+  transition: transform 0.3s, text-shadow 0.3s;
+}
+.icon:hover {
+  transform: scale(105%);
+  text-shadow: 0 0 10px #a3a3a3;
 }
 .order-price {
   border-bottom: 2px solid #404040;
+}
+.section-two {
+  position: sticky;
+  max-width: 560px;
+  width: 100%;
+  bottom: 0%;
+  margin: 0 auto;
+  background-color: rgb(254, 250, 245);
+  overflow: visible;
+  box-shadow: 0px 0px 24px 0px rgba(97, 97, 97, 1);
 }

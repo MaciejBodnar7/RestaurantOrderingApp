@@ -21,51 +21,26 @@
         <h1 class="text-3xl tracking-wide">Jimmy's Diner</h1>
         <p class="tracking-wider">The best burgers and pizzas in town.</p>
       </header>
-      <section class="p-10">
-        <div class="item">
-          <img src="../assets/item graphic-2.png" alt="pizza" />
-          <div class="item-content">
-            <h2 class="text-xl">Pizza</h2>
-            <p class="text-secondary text-sm tracking-wider">pepperoni,mushrom,mozarella</p>
+      <section class="p-10 pb-0" id="item-container">
+        <!-- Rednering menu in main.js from data.js -->
+      </section>
+      <section class="pr-10 pl-10 pb-10 flex flex-col section-two">
+        <h2 class="mt-6 self-center mb-10 text-2xl">Your order</h2>
+        <div class="order-price text-xl">
+          <div class="order-item flex justify-between mb-2">
+            <p>pizza</p>
             <p>$14</p>
           </div>
-          <i class="fa-solid fa-circle-plus icon"></i>
-        </div>
-        <div class="item">
-          <img src="../assets/item graphic-1.png" alt="pizza" />
-          <div class="item-content">
-            <h2>Hamburger</h2>
-            <p class="text-secondary text-sm">beef, cheese, lettuce</p>
-            <p>$14</p>
-          </div>
-          <i class="fa-solid fa-circle-plus icon"></i>
-        </div>
-        <div class="item">
-          <img src="../assets/item graphic.png" alt="pizza" />
-          <div class="item-content">
-            <h2>Beer</h2>
-            <p class="text-secondary text-sm">grain, hops, yeast, water</p>
-            <p>$14</p>
-          </div>
-          <i class="fa-solid fa-circle-plus icon"></i>
-        </div>
-        <div class="section-2 p-3 flex flex-col">
-          <h2 class="mt-6 self-center mb-10 text-2xl">Your order</h2>
-          <div class="order-price text-xl">
-            <div class="order-item flex justify-between mb-2">
-              <p>pizza</p>
-              <p>$14</p>
-            </div>
-            <div class="order-item flex justify-between mb-2">
-              <p>beer</p>
-              <p>$14</p>
-            </div>
-          </div>
-          <div class="ored-sum flex justify-between mt-2 text-xl">
-            <p>Total price:</p>
-            <p>$14</p>
+          <div class="order-item flex justify-between mb-2">
+            <p id="item">beer</p>
+            <p id="cost">$14</p>
           </div>
         </div>
+        <div class="ored-sum flex justify-between mt-2 text-xl">
+          <p>Total price:</p>
+          <p>$14</p>
+        </div>
+        <button class="bg-buttoncolor text-white font-bold font-sans p-3 mt-10">Complete order</button>
       </section>
     </main>
     <script src="../main.js" type="module"></script>
