@@ -72,9 +72,14 @@ img {
   left: 50%;
   transform: translate(-50%, -50%);
   display: none;
+  flex-direction: column;
 }
 .form input {
   border: 2px solid #b2b2b2;
   padding: 0.75em;
   outline: 0;
+}
+.container-for-p {
+  width: 470px;
+  margin: 0 auto;
 }

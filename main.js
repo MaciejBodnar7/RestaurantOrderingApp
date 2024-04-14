@@ -7,12 +7,28 @@ const itemContainer = document.getElementById("item-container");
 const youOrder = document.getElementById("your-order");
 const total = document.getElementById("total");
 
+const form = document.getElementById("form");
+const formdiv = document.getElementById("formdiv");
+
+const spanThankEnd = document.getElementById("span-thank-end");
+spanThankEnd.style.display = "none";
+
 document.addEventListener("click", function (e) {
   if (e.target.dataset.share) {
     handleAddClick(e.target.dataset.share);
   } else if (e.target.id === "complete-button") {
-    console.log("btn");
+    formHandle();
   }
+});
+
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const payFormData = new FormData(form); //storing data from form in this variable
+  const name = payFormData.get("name");
+
+  spanThankEnd.style.display = "flex";
+  spanThankEnd.textContent = `Thanks, ${name}! Your order is on its way!`;
 });
 
 const handleAddClick = (iconId) => {
@@ -69,4 +85,15 @@ const renderOrder = (object) => {
 };
 
 // form
-const formHandle = (item) => {};
+
+const formHandle = () => {
+  console.log("test");
+  formdiv.style.display = "flex";
+
+  const paybtn = document.getElementById("pay");
+
+  paybtn.addEventListener("click", function () {
+    formdiv.style.display = "none";
+    sectionTwo.style.display = "none";
+  });
+};
