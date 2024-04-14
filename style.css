@@ -83,3 +83,6 @@ img {
   width: 470px;
   margin: 0 auto;
 }
+.item-in-basket {
+  cursor: pointer;
+}

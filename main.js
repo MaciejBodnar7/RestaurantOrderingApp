@@ -1,4 +1,5 @@
 import { menuArray } from "./data.js";
+import { v4 as uuidv4 } from "https://jspm.dev/uuid";
 const sectionTwo = document.getElementById("section-two");
 sectionTwo.style.display = "none";
 
@@ -18,6 +19,8 @@ document.addEventListener("click", function (e) {
     handleAddClick(e.target.dataset.share);
   } else if (e.target.id === "complete-button") {
     formHandle();
+  } else if (e.target.dataset.item) {
+    handleRemoveClick(e.target.dataset.item);
   }
 });
 
@@ -28,14 +31,27 @@ form.addEventListener("submit", function (e) {
   const name = payFormData.get("name");
 
   spanThankEnd.style.display = "flex";
+
+  //Clearing
+  const cardName = (document.getElementById("card-name").value = "");
+  const cardNumber = (document.getElementById("card-number").value = "");
+  const cardCvv = (document.getElementById("card-cvv").value = "");
+  youOrder.innerHTML = "";
+
   spanThankEnd.textContent = `Thanks, ${name}! Your order is on its way!`;
 });
 
+let shoppingCard = [];
+
 const handleAddClick = (iconId) => {
-  const targetMenuItem = menuArray.filter(function (item) {
-    return item.id == iconId;
-  });
-  renderOrder(targetMenuItem);
+  const targetMenuItem = menuArray.find((item) => item.id == iconId); // Use find to get the item directly
+  if (targetMenuItem) {
+    const itemWithUUID = { ...targetMenuItem, uuid: uuidv4() }; // Assign UUID here
+    shoppingCard.push(itemWithUUID);
+
+    totalPrice.push(targetMenuItem.price); // Update totalPrice here
+    renderOrder(shoppingCard);
+  }
 };
 
 // Rendering data.js
@@ -62,30 +78,48 @@ itemContainer.innerHTML = reder();
 
 // Order Popup Rendering
 
-const totalPrice = [];
+let totalPrice = [0];
 
 const renderOrder = (object) => {
   sectionTwo.style.display = "flex";
 
-  const orderItem = object.map((item) => {
-    totalPrice.push(item.price);
-    return `
+  const orderItem = object
+    .map((item) => {
+      return `
         <div class="order-item flex justify-between mb-2">
-            <p id="item">${item.name}</p>
+            <p id="item" class="item-in-basket" data-item="${item.uuid}">${item.name}</p>
             <p id="cost">$${item.price}</p>
         </div>
         `;
-  });
-  youOrder.innerHTML += orderItem;
+    })
+    .join("");
+  youOrder.innerHTML = orderItem;
+  totalPirce();
+};
 
-  const totalPriceDollas = totalPrice.reduce((item, currentItem) => {
-    return item + currentItem;
-  });
-  total.textContent = `$${totalPriceDollas}`;
+const totalPirce = () => {
+  const totalPriceDollars = totalPrice.reduce((total, currentItem) => {
+    return total + currentItem;
+  }, 0);
+  total.textContent = `$${totalPriceDollars}`;
+  //console.log(totalPrice);
+};
+
+//deleting
+
+const handleRemoveClick = (uuid) => {
+  console.log(uuid);
+  shoppingCard = shoppingCard.filter((item) => item.uuid !== uuid); // Use filter to remove the item
+
+  // Recalculate totalPrice based on the updated shoppingCard
+  totalPrice = shoppingCard.map((item) => item.price);
+  renderOrder(shoppingCard);
+  if (totalPrice.length === 0) {
+    sectionTwo.style.display = "none";
+  }
 };
 
 // form
-
 const formHandle = () => {
   console.log("test");
   formdiv.style.display = "flex";
@@ -95,5 +129,6 @@ const formHandle = () => {
   paybtn.addEventListener("click", function () {
     formdiv.style.display = "none";
     sectionTwo.style.display = "none";
+    totalPirce = [];
   });
 };
