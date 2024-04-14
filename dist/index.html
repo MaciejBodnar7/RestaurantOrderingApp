@@ -31,7 +31,9 @@
 
       <section class="pr-10 pl-10 pb-10 flex flex-col section-two" id="section-two">
         <h2 class="mt-6 self-center mb-10 text-2xl">Your order</h2>
-        <div class="order-price text-xl" id="your-order"> </div>
+        <div class="order-price text-xl" id="your-order">
+          <!-- order-render-js -->
+        </div>
         <div class="ored-sum flex justify-between mt-2 text-xl">
           <p>Total price:</p>
           <p id="total">$14</p>
@@ -46,7 +48,7 @@
         <input type="text" name="name" id="card-name" placeholder="Enter your name" required />
         <input type="text" name="card-number" id="card-number" placeholder="Enter card number" required />
         <input type="text" name="card-cvv" id="card-cvv" placeholder="Enter CVV" required />
-        <button id="pay" class="bg-buttoncolor text-white font-bold font-sans p-3 mt-10">Pay</button>
+        <button type="submit" id="pay" class="bg-buttoncolor text-white font-bold font-sans p-3 mt-10">Pay</button>
       </form>
     </div>
   </body>

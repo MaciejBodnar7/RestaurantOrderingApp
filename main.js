@@ -14,6 +14,8 @@ const formdiv = document.getElementById("formdiv");
 const spanThankEnd = document.getElementById("span-thank-end");
 spanThankEnd.style.display = "none";
 
+let totalPriceArr = [0];
+
 document.addEventListener("click", function (e) {
   if (e.target.dataset.share) {
     handleAddClick(e.target.dataset.share);
@@ -29,15 +31,7 @@ form.addEventListener("submit", function (e) {
 
   const payFormData = new FormData(form); //storing data from form in this variable
   const name = payFormData.get("name");
-
   spanThankEnd.style.display = "flex";
-
-  //Clearing
-  const cardName = (document.getElementById("card-name").value = "");
-  const cardNumber = (document.getElementById("card-number").value = "");
-  const cardCvv = (document.getElementById("card-cvv").value = "");
-  youOrder.innerHTML = "";
-
   spanThankEnd.textContent = `Thanks, ${name}! Your order is on its way!`;
 });
 
@@ -49,7 +43,7 @@ const handleAddClick = (iconId) => {
     const itemWithUUID = { ...targetMenuItem, uuid: uuidv4() }; // Assign UUID here
     shoppingCard.push(itemWithUUID);
 
-    totalPrice.push(targetMenuItem.price); // Update totalPrice here
+    totalPriceArr.push(targetMenuItem.price); // Update totalPrice here
     renderOrder(shoppingCard);
   }
 };
@@ -78,8 +72,6 @@ itemContainer.innerHTML = reder();
 
 // Order Popup Rendering
 
-let totalPrice = [0];
-
 const renderOrder = (object) => {
   sectionTwo.style.display = "flex";
 
@@ -98,11 +90,11 @@ const renderOrder = (object) => {
 };
 
 const totalPirce = () => {
-  const totalPriceDollars = totalPrice.reduce((total, currentItem) => {
+  const totalPriceDollars = totalPriceArr.reduce((total, currentItem) => {
     return total + currentItem;
   }, 0);
   total.textContent = `$${totalPriceDollars}`;
-  //console.log(totalPrice);
+  //console.log(totalPriceArr);
 };
 
 //deleting
@@ -112,9 +104,9 @@ const handleRemoveClick = (uuid) => {
   shoppingCard = shoppingCard.filter((item) => item.uuid !== uuid); // Use filter to remove the item
 
   // Recalculate totalPrice based on the updated shoppingCard
-  totalPrice = shoppingCard.map((item) => item.price);
+  totalPriceArr = shoppingCard.map((item) => item.price);
   renderOrder(shoppingCard);
-  if (totalPrice.length === 0) {
+  if (totalPriceArr.length === 0) {
     sectionTwo.style.display = "none";
   }
 };
@@ -124,11 +116,17 @@ const formHandle = () => {
   console.log("test");
   formdiv.style.display = "flex";
 
+  //Clearing
+  const cardName = document.getElementById("card-name").value;
+  const cardNumber = document.getElementById("card-number").value;
+  const cardCvv = document.getElementById("card-cvv").value;
+
   const paybtn = document.getElementById("pay");
 
   paybtn.addEventListener("click", function () {
     formdiv.style.display = "none";
     sectionTwo.style.display = "none";
-    totalPirce = [];
+    totalPriceArr = [];
+    shoppingCard = [];
   });
 };
