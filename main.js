@@ -33,6 +33,19 @@ form.addEventListener("submit", function (e) {
   const name = payFormData.get("name");
   spanThankEnd.style.display = "flex";
   spanThankEnd.textContent = `Thanks, ${name}! Your order is on its way!`;
+
+  // If the form is valid, proceed with hiding the form and clearing the data
+  const cardName = document.getElementById("card-name");
+  const cardNumber = document.getElementById("card-number");
+  const cardCvv = document.getElementById("card-cvv");
+
+  cardName.value = "";
+  cardNumber.value = "";
+  cardCvv.value = "";
+  formdiv.style.display = "none";
+  sectionTwo.style.display = "none";
+  totalPriceArr = [];
+  shoppingCard = [];
 });
 
 let shoppingCard = [];
@@ -101,7 +114,7 @@ const totalPirce = () => {
 
 const handleRemoveClick = (uuid) => {
   console.log(uuid);
-  shoppingCard = shoppingCard.filter((item) => item.uuid !== uuid); // Use filter to remove the item
+  shoppingCard = shoppingCard.filter((item) => item.uuid !== uuid);
 
   // Recalculate totalPrice based on the updated shoppingCard
   totalPriceArr = shoppingCard.map((item) => item.price);
@@ -111,22 +124,21 @@ const handleRemoveClick = (uuid) => {
   }
 };
 
-// form
+// formRender and input check
 const formHandle = () => {
   console.log("test");
-  formdiv.style.display = "flex";
-
-  //Clearing
-  const cardName = document.getElementById("card-name").value;
-  const cardNumber = document.getElementById("card-number").value;
-  const cardCvv = document.getElementById("card-cvv").value;
-
   const paybtn = document.getElementById("pay");
 
-  paybtn.addEventListener("click", function () {
-    formdiv.style.display = "none";
-    sectionTwo.style.display = "none";
-    totalPriceArr = [];
-    shoppingCard = [];
+  formdiv.style.display = "flex";
+
+  paybtn.addEventListener("click", function (e) {
+    // Check if the form is valid
+    if (!form.checkValidity()) {
+      // If the form is not valid, prevent the form from being submitted
+      e.preventDefault();
+      // Trigger validation messages
+      form.reportValidity();
+      return; // Exit the function early
+    }
   });
 };
